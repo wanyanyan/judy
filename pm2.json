@@ -1,0 +1,25 @@
+{
+  "apps": [{
+    "script": "./bin/www",
+    "instances":2,
+    "exec_mode": "cluster",
+    "watch": true,
+    "ignore_watch": [
+      "node_modules",
+      ".git",
+      ".idea",
+      "coverage",
+      "tilesets",
+      "fonts",
+      "sprites",
+      "files",
+      "uploads",
+      "datasets",
+      "templates"
+    ],
+    "env": {
+      "NODE_ENV": "production",
+      "PORT": 8090
+    }
+  }]
+}
