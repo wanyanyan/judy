@@ -58,6 +58,8 @@ module.exports.upload = function(req, res) {
     if (req.body.year) newUpload.year = req.body.year
     if (req.body.location) newUpload.location = req.body.location
     if (req.body.scale) newUpload.scale = req.body.scale
+    if (req.body.scope) newUpload.scope = req.body.scope
+    if (req.body.tags) newUpload.tags = req.body.tags
 
     if (['png', 'jpg', 'jpeg', 'gif', 'tiff', 'tif'].indexOf(newUpload.format) < 0) {
       newUpload.save(function(err) {
@@ -261,111 +263,6 @@ module.exports.download = function(req, res) {
         if (err) {
           return
         }
-      })
-
-      Upload.findOne({
-        upload_id: req.params.upload_id
-      }, function(err, upload) {
-        if (err) {
-          return res.status(500).json({ error: err })
-        }
-
-        if (!upload) {
-          return res.sendStatus(404)
-        }
-        var owner = upload.owner
-        var location = upload.location
-        var year = upload.year
-        var tags = upload.tags
-
-        User.findOne({
-          username: owner
-        }, function(err,user) {
-          if (err) {
-            return res.status(500).json({ error: err })
-          }
-
-          if (!user) {
-            return res.sendStatus(404)
-          }
-
-          var isYear = false
-          for(var i=0;i<user.statYears.length;i++){
-            isYear = false
-            if(user.statYears[i].name === year){
-              user.statYears[i].count += 1
-              isYear = true
-              break
-            }
-          }
-          if(!isYear){
-            var tempStat = {
-              name: year,
-              count: 1
-            }
-            user.statYears.push(tempStat)
-          }
-          User.findOneAndUpdate({
-            username: owner
-          }, { statYears: user.statYears}, { new: true }, function(err) {
-            if (err) {
-              return
-            }
-          })
-
-          var isLocation = false
-          for(var i=0;i<user.statMaplands.length;i++){
-            isLocation = false
-            if(user.statMaplands[i].name === location){
-              user.statMaplands[i].count += 1
-              isLocation = true
-              break
-            }
-          }
-          if(!isLocation){
-            var tempStat = {
-              name: location,
-              count: 1
-            }
-            user.statMaplands.push(tempStat)
-          }
-          User.findOneAndUpdate({
-            username: owner
-          }, { statMaplands: user.statMaplands}, { new: true }, function(err) {
-            if (err) {
-              return
-            }
-          })
-          
-          var isTag = false
-          for(var j=0;j<tags.length;j++){
-            var temptag = tags[j]
-            for(var i=0;i<user.statTags.length;i++){
-              isTag = false
-              if(user.statTags[i].name === temptag){
-                user.statTags[i].count += 1
-                isTag = true
-                break
-              }
-            }
-            if(!isTag){
-              var tempStat = {
-                name: temptag,
-                count: 1
-              }
-              user.statTags.push(tempStat)
-            }
-          }
-          
-          User.findOneAndUpdate({
-            username: owner
-          }, { statTags: user.statTags}, { new: true }, function(err) {
-            if (err) {
-              return
-            }
-          })
-
-        })
       })
 
     })

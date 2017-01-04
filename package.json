@@ -9,8 +9,7 @@
   },
   "bin": {
     "tilelive-copy": "./node_modules/.bin/tilelive-copy",
-    "delete-uploads-true": "./bin/delete",
-    "postgis-index":"node --max_old_space_size=20000000 ./bin/postgre_mongo"
+    "delete-uploads-true": "./bin/delete"
   },
   "dependencies": {
     "abaculus": "github:jingsam/abaculus",

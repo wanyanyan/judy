@@ -1,13 +1,12 @@
 {
   "apps": [{
     "script": "./bin/www",
-    "instances":2,
+    "instances": 7,
     "exec_mode": "cluster",
     "watch": true,
     "ignore_watch": [
       "node_modules",
       ".git",
-      ".idea",
       "coverage",
       "tilesets",
       "fonts",
@@ -19,7 +18,7 @@
     ],
     "env": {
       "NODE_ENV": "production",
-      "PORT": 8090
+      "PORT": 8080
     }
   }]
 }

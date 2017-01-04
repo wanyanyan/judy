@@ -65,8 +65,8 @@ module.exports = function(style, params, callback) {
 
      var image = sharp(buffer, {
        raw: {
-         width: renderOptions.width * mapOptions.ratio,
-         height: renderOptions.width * mapOptions.ratio,
+         width: parseInt(renderOptions.width * mapOptions.ratio),
+         height: parseInt(renderOptions.width * mapOptions.ratio),
          channels: 4
        }
      })

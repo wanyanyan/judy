@@ -9,7 +9,7 @@ var tilelive = require('tilelive')
   // var sharp = require('sharp')
   // var request = require('request')
 var Style = require('../models/style')
-var render = require('./tile-gl-render')
+var render = require('./render')
 
 
 //该模块包含了对样式功能进行业务处理的各项函数

@@ -9,6 +9,7 @@ var StyleSchema = new mongoose.Schema({
   owner: String,
   scope: { type: String, default: 'private' },
   is_deleted: { type: Boolean, default: false },
+  type: { type:String, default: 'normal' },
 
   tags: [String],
   description: String,
