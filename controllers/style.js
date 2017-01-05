@@ -9,7 +9,7 @@ var tilelive = require('tilelive')
   // var sharp = require('sharp')
   // var request = require('request')
 var Style = require('../models/style')
-var render = require('./render')
+var render = require('./native-gl-render')
 
 
 //该模块包含了对样式功能进行业务处理的各项函数
@@ -24,7 +24,7 @@ module.exports.list = function(req, res) {
     query.scope = 'public'
   }
 
-  Style.find(query, 'style_id owner scope tags description version name createdAt updatedAt', function(err, styles) {
+  Style.find(query, 'style_id owner scope type tags description version name createdAt updatedAt', function(err, styles) {
     if (err) {
       return res.status(500).json({ error: err })
     }
