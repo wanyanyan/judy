@@ -5,10 +5,10 @@ var async = require('async')
 var mongoose = require('mongoose')
 var shortid = require('shortid')
 var filesniffer = require('mapbox-file-sniff')
-var tilelive = require('tilelive')
-var Omnivore = require('tilelive-omnivore')
+//var tilelive = require('tilelive')
+//var Omnivore = require('tilelive-omnivore')
 var tiletype = require('tiletype')
-var shpFairy = require('shapefile-fairy')
+//var shpFairy = require('shapefile-fairy')
 var mkdirp = require('mkdirp')
 var config = require('../config')
 var TileSchema = require('../models/tile')
@@ -82,7 +82,7 @@ module.exports.retrieve = function(req, res) {
 
 
 module.exports.upload = function(req, res) {
-  var username = req.params.username
+  /*var username = req.params.username
   var filePath = req.files[0].path
   var originalname = req.files[0].originalname
   var size = req.files[0].size
@@ -195,7 +195,7 @@ module.exports.upload = function(req, res) {
       }
     }
     uploadResults.push(uploadStatus)
-  })
+  })*/
 }
 
 module.exports.getCopyStatus = function (req,res) {

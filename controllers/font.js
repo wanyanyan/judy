@@ -3,7 +3,7 @@ var path = require('path')
 var _ = require('lodash')
 var async = require('async')
 var mkdirp = require('mkdirp')
-var fontmachine = require('fontmachine')
+//var fontmachine = require('fontmachine')
 var fontscope = require('font-scope')
 var gm = require('gm')
 var Font = require('../models/font')
@@ -32,7 +32,7 @@ module.exports.list = function(req, res) {
 
 
 module.exports.upload = function(req, res) {
-  var username = req.params.username
+  /*var username = req.params.username
   var filePath = req.files[0].path
   var originalname = req.files[0].originalname
   var size = req.files[0].size
@@ -111,7 +111,7 @@ module.exports.upload = function(req, res) {
 
       res.json(results.updateDB)
     })
-  }
+  }*/
 }
 
 

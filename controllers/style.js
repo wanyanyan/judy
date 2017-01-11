@@ -1,15 +1,15 @@
 var _ = require('lodash')
 var validate = require('mapbox-gl-style-spec').validate
 var escaper = require('mongo-key-escaper')
-var abaculus = require('abaculus')
-var gl2xml = require('mapbox-gl-json-to-mapnik-xml')
+//var abaculus = require('abaculus')
+//var gl2xml = require('mapbox-gl-json-to-mapnik-xml')
 var async = require('async')
-var tilelive = require('tilelive')
+//var tilelive = require('tilelive')
   // var mbgl = require('mapbox-gl-native')
   // var sharp = require('sharp')
   // var request = require('request')
 var Style = require('../models/style')
-var render = require('./native-gl-render')
+//var render = require('./native-gl-render')
 
 
 //该模块包含了对样式功能进行业务处理的各项函数
@@ -113,7 +113,7 @@ module.exports.delete = function(req, res) {
 
 
 module.exports.downloadTile = function(req, res) {
-  var style_id = req.params.style_id
+  /*var style_id = req.params.style_id
   var username = req.params.username
   var z = +req.params.z || 0
   var x = +req.params.x || 0
@@ -141,12 +141,12 @@ module.exports.downloadTile = function(req, res) {
 
     res.set(results.getTile[1])
     res.send(results.getTile[0])
-  })
+  })*/
 }
 
 
 module.exports.preview = function(req, res) {
-  var style_id = req.params.style_id
+  /*var style_id = req.params.style_id
   var username = req.params.username
 
   var params = {
@@ -175,112 +175,5 @@ module.exports.preview = function(req, res) {
 
     res.set(results.getImage[1])
     res.send(results.getImage[0])
-  })
-}
-
-
-function getTileMapnik(z, x, y, opts, callback) {
-  if (!opts.style) {
-    return callback('Mising style')
-  }
-
-  opts.scale = +opts.scale || 1
-  opts.format = opts.format || 'png'
-
-  async.autoInject({
-    xml: function(callback) {
-      gl2xml(opts.style, callback)
-    },
-    source: function(xml, callback) {
-      var uri = {
-        protocol: 'vector:',
-        xml: xml,
-        scale: opts.scale,
-        format: opts.format
-      }
-
-      tilelive.load(uri, callback)
-    },
-    getTile: function(source, callback) {
-      source.getTile(z, x, y, callback)
-    }
-  }, function(err, results) {
-    if (err) return callback(err)
-
-    if (!results.getTile) return callback()
-
-    return callback(err, results.getTile[0], results.getTile[1])
-  })
-}
-
-
-// function getTileMapboxGL(z, x, y, opts, callback) {
-//   if (!opts.style) {
-//     return callback(new Error('Mising style'))
-//   }
-
-//   opts.scale = (+opts.scale || 1) / 2
-//   opts.format = opts.format || 'png'
-
-//   var mapOptions = {
-//     request: function(req, callback) {
-//       request({
-//         url: req.url,
-//         encoding: null,
-//         gzip: true
-//       }, function(err, res, body) {
-//         if (err) return callback(err)
-
-//         return callback(null, {data: body})
-//       })
-//     },
-//     ratio: opts.scale
-//   }
-
-//   var sm = new SphericalMercator({ size: 512 })
-//   var center = sm.ll([x * 512 + 256, y * 512 + 256], z)
-
-//   var renderOptions = {
-//     zoom: z,
-//     width: 512,
-//     height: 512,
-//     center: center,
-//     bearing: opts.bearing || 0,
-//     pitch: opts.pitch || 0
-//   }
-
-//   var map = new mbgl.Map(mapOptions)
-//   map.load(opts.style)
-//   map.render(renderOptions, function(err, buffer) {
-//     if (err) return callback(err)
-
-//     map.release()
-
-//     var image = sharp(buffer, {
-//       raw: {
-//         width: renderOptions.width * mapOptions.ratio,
-//         height: renderOptions.width * mapOptions.ratio,
-//         channels: 4
-//       }
-//     })
-
-//     image.toFormat(opts.format).toBuffer(function(err, buffer, info) {
-//       return callback(err, buffer, { 'Content-Type': mime.lookup(info.format) })
-//     })
-//   })
-// }
-
-/* eslint-disable no-unused-vars */
-function getImageAbaculus(style, params, callback) {
-  var opts = {
-    style: style,
-    scale: params.scale,
-    format: params.format
-  }
-
-  params.getTile = function(z, x, y, callback2) {
-    return getTileMapnik(z, x, y, opts, callback2)
-  }
-
-  abaculus(params, callback)
+  })*/
 }

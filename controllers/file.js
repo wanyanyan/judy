@@ -4,7 +4,7 @@ var path = require('path')
 var shortid = require('shortid')
 var mkdirp = require('mkdirp')
 var async = require('async')
-var sharp = require('sharp')
+//var sharp = require('sharp')
 var gm = require('gm')
 var File = require('../models/file')
 
@@ -106,7 +106,7 @@ module.exports.retrieve = function(req, res) {
 
 
 module.exports.upload = function(req, res) {
-  var username = req.params.username
+  /*var username = req.params.username
   var filePath = req.files[0].path
   var originalname = req.files[0].originalname
   var size = req.files[0].size
@@ -175,7 +175,7 @@ module.exports.upload = function(req, res) {
     }
 
     res.json(results.writeDB)
-  })
+  })*/
 }
 
 

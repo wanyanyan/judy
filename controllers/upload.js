@@ -3,7 +3,7 @@ var fs = require('fs')
 var path = require('path')
 var mongoose = require('mongoose')
 var async = require('async')
-var sharp = require('sharp')
+//var sharp = require('sharp')
 var Grid = require('gridfs-stream')
 var Upload = require('../models/upload')
 var User = require('../models/user')
@@ -34,7 +34,7 @@ module.exports.list = function(req, res) {
 
 
 module.exports.upload = function(req, res) {
-  var gfs = Grid(mongoose.connection.db, mongoose.mongo)
+  /*var gfs = Grid(mongoose.connection.db, mongoose.mongo)
   var writeStream = gfs.createWriteStream({
     filename: req.files[0].originalname
   })
@@ -124,7 +124,7 @@ module.exports.upload = function(req, res) {
         })
       })
     }
-  })
+  })*/
 }
 
 
